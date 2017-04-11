@@ -5,6 +5,7 @@ namespace GraphQLExample;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
+use GraphQLExample\Objects\CreativeObject;
 
 class RootObject extends ObjectType
 {
@@ -13,6 +14,10 @@ class RootObject extends ObjectType
         $config = [
             'name' => 'Query',
             'fields' => [
+                'Creative' => [
+                    'type' => Type::listOf(new CreativeObject()),
+                    'resolve' => [$this, 'findCreative']
+                ],
                 'HelloWorld' => [
                     'type' => Type::string(),
                     'resolve' => function($value, $args, $context, ResolveInfo $info) {
@@ -23,5 +28,10 @@ class RootObject extends ObjectType
         ];
 
         parent::__construct($config);
+    }
+
+    public function findCreative($value, $args, $context, ResolveInfo $info)
+    {
+        return [];
     }
 }
