@@ -26,6 +26,13 @@ You should see the following response
 }
 ```
 
+## Running with Docker
+
+1. Build ```docker build -t graphql-examples .```
+2. Install composer ```docker run -it -v $(PWD):/var/www graphql-examples composer install```
+3. Run the server ```docker run -it -p 8080:80 -v $(PWD):/var/www graphql-examples php -S 0.0.0.0:80 server.php```
+
+
 Checkout each branch and play with it.
 
 
