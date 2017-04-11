@@ -112,6 +112,15 @@ function env($key, $default = null)
     return $value;
 }
 
+function array_column_multi(array $input, array $column_keys) {
+    $result = array();
+    $column_keys = array_flip($column_keys);
+    foreach($input as $key => $el) {
+        $result[$key] = array_intersect_key($el, $column_keys);
+    }
+    return $result;
+}
+
 /**
  * Return the default value of the given value.
  *

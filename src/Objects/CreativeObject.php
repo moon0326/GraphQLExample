@@ -12,7 +12,8 @@ class CreativeObject extends ObjectType
         $config = [
             'name' => 'Creative',
             'fields' => [
-                'id' => Type::id()
+                'id' => Type::id(),
+                'fqid' => Type::string()
             ]
         ];
 
