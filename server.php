@@ -13,6 +13,9 @@ try {
     // Parse incoming query and variables
     $raw = file_get_contents('php://input') ?: '';
     $data = json_decode($raw, true);
+    if (!$data) {
+        $data = [];
+    }
 
     $data += ['query' => null, 'variables' => null];
 
