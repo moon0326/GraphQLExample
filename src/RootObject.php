@@ -5,6 +5,7 @@ namespace GraphQLExample;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
+use GraphQLExample\DataSources\Creatives;
 use GraphQLExample\Objects\CreativeObject;
 
 class RootObject extends ObjectType
@@ -32,6 +33,11 @@ class RootObject extends ObjectType
 
     public function findCreative($value, $args, $context, ResolveInfo $info)
     {
-        return [];
+        if ($args) {
+
+        }
+
+        $data = new Creatives();
+        return $data->findAll();
     }
 }
