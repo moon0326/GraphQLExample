@@ -17,6 +17,9 @@ class RootObject extends ObjectType
             'fields' => [
                 'Creative' => [
                     'type' => Type::listOf(new CreativeObject()),
+                    'args' => [
+                        'id' => Type::id()
+                    ],
                     'resolve' => [$this, 'findCreative']
                 ],
                 'HelloWorld' => [
@@ -33,11 +36,12 @@ class RootObject extends ObjectType
 
     public function findCreative($value, $args, $context, ResolveInfo $info)
     {
-        if ($args) {
+        $data = new Creatives();
 
+        if ($args) {
+            return [$data->findById($args['id'])];
         }
 
-        $data = new Creatives();
         return $data->findAll();
     }
 }
